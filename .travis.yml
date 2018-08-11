@@ -1,6 +1,10 @@
 language: nix
+
+env:
+  - GHCVER=7103
+  - GHCVER=802
+  - GHCVER=822
+  - GHCVER=842
+
 script:
-- nix-build --expr '(import ./default.nix {compiler = "ghc7103";})'
-- nix-build --expr '(import ./default.nix {compiler = "ghc802";})'
-- nix-build --expr '(import ./default.nix {compiler = "ghc822";})'
-- nix-build --expr '(import ./default.nix {compiler = "ghc842";})'
+  - nix-build --expr '(import ./default.nix)' --argstr compiler "ghc$GHCVER"
